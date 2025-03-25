@@ -11964,4 +11964,27 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+body {
+  background-color: rgb(198, 198, 225);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.card {
+  width: 700px;
+  height: 300px;
+}
+
+.card-img-top {
+  width: 30px;
+  margin-left: 10px;
+  margin-bottom: 8px;
+}
+
+.btn {
+  width: 250px;
 }/*# sourceMappingURL=style.css.map */
