@@ -11991,4 +11991,8 @@ body {
 
 .btn {
   width: 250px;
+}
+
+.bg-primary {
+  background-color: lightblue !important;
 }/*# sourceMappingURL=style.css.map */
