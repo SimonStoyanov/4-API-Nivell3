@@ -6,6 +6,14 @@ const options = {
     }
 }
 
+const bgImg: string[] = [
+    "data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M735 640.5q-73 140.5-278.5 216T134 716Q17 500 162 332.5t361-207Q739 86 773.5 293T735 640.5Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%23f7e545%22 d=%22M735 640.5q-73 140.5-278.5 216T134 716Q17 500 162 332.5t361-207Q739 86 773.5 293T735 640.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E",
+    "data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M858.5 689.5Q719 879 497 884T229 694.5Q183 500 218.5 287t240-141q204.5 72 372 213t28 330.5Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%23f7e545%22 d=%22M858.5 689.5Q719 879 497 884T229 694.5Q183 500 218.5 287t240-141q204.5 72 372 213t28 330.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E",
+    "data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M754 660q-69 160-238 132.5t-331.5-160Q22 500 140 290.5T480.5 115Q703 149 763 324.5T754 660Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%23f7e545%22 d=%22M754 660q-69 160-238 132.5t-331.5-160Q22 500 140 290.5T480.5 115Q703 149 763 324.5T754 660Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E",
+    "data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M795 699q-65 199-292 194T197.5 694Q119 500 222 348.5T507.5 184Q690 171 775 335.5T795 699Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%23f7e545%22 d=%22M795 699q-65 199-292 194T197.5 694Q119 500 222 348.5T507.5 184Q690 171 775 335.5T795 699Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"      
+];
+
+const card: HTMLDivElement = document.querySelector<HTMLDivElement>('#card')!;
 const button: HTMLButtonElement = document.querySelector<HTMLButtonElement>('#nextJoke')!;
 const score_1: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>('#score_1');
 const score_2: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>('#score_2');
@@ -79,6 +87,8 @@ export function getJoke(): void {
     }
 }
 
+let bgIterator = 0;
+
 function sendReport(): void {
     jokeReport.push({
         joke: currJoke, 
@@ -87,4 +97,7 @@ function sendReport(): void {
     })
     console.log(jokeReport);
     getJoke();
+    if (bgIterator >= bgImg.length) bgIterator = 0;
+    console.log(card);
+    card.style.setProperty('--bg-image', `url('${bgImg[bgIterator++]}')`);
 }

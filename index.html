@@ -7,21 +7,21 @@
     <title>4-API using TS</title>
   </head>
   <body>
-    <div class="card w-auto h-auto bg-primary align-items-center">
+    <div class="w-auto h-auto bg-primary align-items-start text-center">
       <img src="" alt="" id="weatherIco">
       <p class="px-2 text-uppercase" id="weatherDesc"></p>
       <p class="px-2 text-uppercase" id="weatherTemp"></p>
     </div>
     <div class="mx-3">
-      <div class="card text-center align-items-center shadow">
+      <div id="card" class="card text-center align-items-center">
         <h2 class="mt-3">Ready to laugh?<img class="card-img-top" src="/laugh.png" alt="emoji" /></h2>
         <div class="card-body flex-grow-1">
           <p class="card-text mx-5" id="joke"></p>
         </div>
         <div class="mb-2">
-          <button id="score_1"><img class="score" src="/score_1.png" alt="1"></button>
-          <button id="score_2"><img class="score" src="/score_2.png" alt="2"></button>
-          <button id="score_3"><img class="score" src="/score_3.png" alt="3"></button>
+          <button class="btn-score" id="score_1"><img class="score" src="/score_1.png" alt="1"></button>
+          <button class="btn-score" id="score_2"><img class="score" src="/score_2.png" alt="2"></button>
+          <button class="btn-score" id="score_3"><img class="score" src="/score_3.png" alt="3"></button>
         </div>
         <button class="btn btn-primary mb-3" id="nextJoke">NEXT JOKE</button>
       </div>
