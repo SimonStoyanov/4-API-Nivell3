@@ -3,6 +3,6 @@ import { getWeather } from './weather.ts';
 import { getJoke } from './joke.ts';
 
 
-// Create joke at init
-getJoke();
-getWeather();
+// Call functions
+getJoke();          // Create joke at init
+getWeather();       // Load weather data at init

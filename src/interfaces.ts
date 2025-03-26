@@ -4,6 +4,11 @@ export interface JsonRes {
     status: number
 }
 
+interface JsonResAlt {
+    joke: string
+}
+export type AltJokeRes = JsonResAlt[];
+
 export interface JsonWeather {
     coord: {
         lon: number,

@@ -1,4 +1,4 @@
-import {JsonRes, Report} from './interfaces.ts'
+import {AltJokeRes, JsonRes, Report} from './interfaces.ts'
 
 const options = {
     headers: {
@@ -6,7 +6,7 @@ const options = {
     }
 }
 
-const button: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>('#nextJoke');
+const button: HTMLButtonElement = document.querySelector<HTMLButtonElement>('#nextJoke')!;
 const score_1: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>('#score_1');
 const score_2: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>('#score_2');
 const score_3: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>('#score_3');
@@ -14,9 +14,9 @@ const joke: HTMLElement = document.querySelector<HTMLParagraphElement>('#joke')!
 
 let jokeReport: Array<Report> = [];
 let currScore: 1 | 2 | 3 | undefined;
-let currJoke: JsonRes;
+let currJoke: string;
 
-button?.addEventListener('click', () => sendReport());
+button.addEventListener('click', () => sendReport());
 handleScore(score_1, 1);
 handleScore(score_2, 2);
 handleScore(score_3, 3);
@@ -41,21 +41,47 @@ async function fetchJoke(): Promise<JsonRes> {
     return await res.json();
 }
 
+async function fetchJokeAlt(): Promise<AltJokeRes> {
+    joke.innerHTML = "<br/>L o a d i n g . . .";
+    button.disabled = true;
+
+    const res = await fetch('https://api.api-ninjas.com/v1/jokes', { 
+        headers: {
+            'X-Api-Key': '5NgpNoCFZF3q9FM1Ko4lTA==WDBFAhey5Ldv1607',
+            'Content-Type': 'application/json'
+        }    
+    });
+
+    button.disabled = false;
+    if (!res.ok) return Promise.reject("Failed to fetch dad joke!");
+    return await res.json();
+}
+
 export function getJoke(): void {
     currScore = undefined; // resets currScore
     resetScoreState();
-    fetchJoke()
+
+    if (Math.random() < 0.5) {
+        fetchJoke()
         .then((data) => {
-            joke.innerHTML = `${data.joke}`
-            currJoke = data;
+            joke.innerHTML = `${data.joke}`;
+            currJoke = data.joke;
             return data.joke;
         })
         .catch((error) => console.log(error))
+    } else {
+        fetchJokeAlt()
+        .then((data) => {
+            joke.innerHTML = `${data[0].joke}`;
+            currJoke = data[0].joke;
+            console.log(data[0].joke);
+        })
+    }
 }
 
 function sendReport(): void {
     jokeReport.push({
-        joke: currJoke.joke, 
+        joke: currJoke, 
         score: currScore, 
         date: new Date().toISOString()
     })
