@@ -1,5 +1,8 @@
 import {AltJokeRes, JsonRes, Report} from './interfaces.ts'
 
+const API_JOKE_0: string = 'https://icanhazdadjoke.com/';
+const API_JOKE_1: string = 'https://api.api-ninjas.com/v1/jokes';
+
 const options = {
     headers: {
         'Accept': 'application/json'
@@ -44,7 +47,7 @@ function handleScore(btn: HTMLButtonElement | null, score: 1 | 2 | 3): void {
 }
 
 async function fetchJoke(): Promise<JsonRes> {
-    const res = await fetch('https://icanhazdadjoke.com/', options);
+    const res = await fetch(API_JOKE_0, options);
     if (!res.ok) return Promise.reject("Failed to fetch dad joke!");
     return await res.json();
 }
@@ -53,7 +56,7 @@ async function fetchJokeAlt(): Promise<AltJokeRes> {
     joke.innerHTML = "<br/>L o a d i n g . . .";
     button.disabled = true;
 
-    const res = await fetch('https://api.api-ninjas.com/v1/jokes', { 
+    const res = await fetch(API_JOKE_1, { 
         headers: {
             'X-Api-Key': '5NgpNoCFZF3q9FM1Ko4lTA==WDBFAhey5Ldv1607',
             'Content-Type': 'application/json'
