@@ -82,7 +82,6 @@ export function getJoke(): void {
         .then((data) => {
             joke.innerHTML = `${data[0].joke}`;
             currJoke = data[0].joke;
-            console.log(data[0].joke);
         })
     }
 }
@@ -95,9 +94,7 @@ function sendReport(): void {
         score: currScore, 
         date: new Date().toISOString()
     })
-    console.log(jokeReport);
     getJoke();
     if (bgIterator >= bgImg.length) bgIterator = 0;
-    console.log(card);
     card.style.setProperty('--bg-image', `url('${bgImg[bgIterator++]}')`);
 }
