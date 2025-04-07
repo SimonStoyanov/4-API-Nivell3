@@ -77,7 +77,6 @@ export function getJoke(): void {
         .then((data) => {
             joke.innerHTML = `${data.joke}`;
             currJoke = data.joke;
-            return data.joke;
         })
         .catch((error) => console.log(error))
     } else {
